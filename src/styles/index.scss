@@ -1,0 +1,14 @@
+// @font-face {
+//   font-family: "Roboto";
+//   src: url("../fonts/Roboto.ttf");
+// }
+
+@import "variables";
+@import "scaffolding";
+
+body {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+}

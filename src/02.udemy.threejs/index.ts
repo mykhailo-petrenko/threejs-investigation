@@ -87,11 +87,19 @@ planeFolder.add(plane.rotation, 'z', -Math.PI, Math.PI);
 planeFolder.open();
 // ---------------------------------------------------------
 
+control.target.set(0, 0, 0);
+control.enableDamping = true;
+control.dampingFactor = 0.1;
+
+control.listenToKeyEvents(document.body);
+
+control.update();
+
 function tick() {
   requestAnimationFrame(tick);
 
   cube.rotation.y += 0.01;
-
+  control.update();
   render();
   stats.update();
 }

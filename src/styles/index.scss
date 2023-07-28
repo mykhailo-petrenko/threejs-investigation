@@ -19,3 +19,39 @@ body > canvas {
     left: 0;
     z-index: 0;
 }
+
+:global {
+  section#mapContainer {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+  }
+
+  #GeoMapCanvas {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+
+  .cylinder-bar-legenda {
+    pointer-events: none;
+    color: white;
+    text-shadow: 2px 2px 2px #333333;
+
+    font-size: 14px;
+    line-height: 1.2;
+
+    .cylinder-bar-container {
+      transform: translate(50%, 0) translate(5px, 0);
+    }
+
+    .cylinder-bar-count {
+      font-size: 12px;
+    }
+  }
+}

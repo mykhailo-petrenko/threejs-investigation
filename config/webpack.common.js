@@ -1,8 +1,6 @@
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const PrettierPlugin = require('prettier-webpack-plugin')
-const ESLintPlugin = require('eslint-webpack-plugin')
 
 const babelConfig = require("./.babelrc.js");
 
@@ -10,7 +8,7 @@ const paths = require('./paths')
 
 module.exports = {
   // Where webpack looks to start building the bundle
-  entry: [paths.src + '/index.ts'],
+  entry: ['regenerator-runtime/runtime.js', paths.src + '/index.ts'],
 
   // Where webpack outputs the assets and bundles
   output: {

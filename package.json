@@ -44,11 +44,11 @@
   "dependencies": {
     "@turf/turf": "^6.5.0",
     "@types/dat.gui": "^0.7.7",
-    "@types/three": "^0.139.0",
+    "@types/three": "^0.159.0",
     "d3-scale-chromatic": "^3.0.0",
     "dat.gui": "^0.7.9",
     "earcut": "^2.2.4",
     "regenerator-runtime": "^0.13.11",
-    "three": "^0.139.0"
+    "three": "^0.159.0"
   }
 }

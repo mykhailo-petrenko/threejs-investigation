@@ -238,6 +238,7 @@ export class CSS2DRenderer {
 
     const nodes = this.domElement.childNodes || [];
 
+    // @ts-ignore
     for (const node of nodes) {
       this.domElement.removeChild(node);
     }

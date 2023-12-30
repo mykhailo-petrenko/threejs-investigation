@@ -4,11 +4,10 @@
  * https://sbcode.net/threejs/import-threejs-modules/
  */
 import {
-  BoxBufferGeometry,
+  BoxGeometry,
   Mesh,
   MeshBasicMaterial,
-  PerspectiveCamera,
-  PlaneBufferGeometry,
+  PerspectiveCamera, PlaneGeometry,
   Scene,
   WebGLRenderer
 } from 'three';
@@ -44,6 +43,7 @@ function render() {
   renderer.render(scene, camera);
 }
 
+// @ts-ignore
 const stats = Stats();
 document.body.appendChild(stats.domElement);
 
@@ -55,7 +55,7 @@ const gui = new GUI();
 
 
 // ---------------------------------------------------------
-const planeGeometry = new PlaneBufferGeometry(50, 50, 10, 10);
+const planeGeometry = new PlaneGeometry(50, 50, 10, 10);
 const planeMaterial = new MeshBasicMaterial({color: 0x00ff00, wireframe: true});
 const plane = new Mesh(planeGeometry, planeMaterial);
 plane.rotation.set(Math.PI / 2, 0, 0);
@@ -63,7 +63,7 @@ scene.add(plane);
 
 const size = 10;
 const segments = 3;
-const geometry = new BoxBufferGeometry(size,size,size,segments,segments,segments);
+const geometry = new BoxGeometry(size,size,size,segments,segments,segments);
 
 const material = new MeshBasicMaterial({
   color: 0xf0ff00,

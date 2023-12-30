@@ -1,16 +1,32 @@
-import { EventDispatcher, MOUSE, PerspectiveCamera, Quaternion, Spherical, TOUCH, Vector2, Vector3 } from 'three';
+import {
+  BaseEvent,
+  EventDispatcher,
+  MOUSE,
+  PerspectiveCamera,
+  Quaternion,
+  Spherical,
+  TOUCH,
+  Vector2,
+  Vector3
+} from 'three';
 
-const _changeEvent = {
+type OrbitEvent = BaseEvent<'change' | 'start' | 'end'>
+
+const _changeEvent: OrbitEvent = {
   type: 'change'
 };
-const _startEvent = {
+const _startEvent: OrbitEvent = {
   type: 'start'
 };
-const _endEvent = {
+const _endEvent: OrbitEvent = {
   type: 'end'
 };
 
-export class Orbit3DControl extends EventDispatcher {
+export class Orbit3DControl extends EventDispatcher<{
+  'change': OrbitEvent,
+  'start': OrbitEvent,
+  'end': OrbitEvent,
+}> {
   readonly object: PerspectiveCamera;
   readonly domElement: HTMLElement;
 

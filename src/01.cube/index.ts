@@ -1,5 +1,4 @@
 import {
-  BoxBufferGeometry,
   BoxGeometry,
   Clock, Float32BufferAttribute,
   HemisphereLight,

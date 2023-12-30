@@ -1,4 +1,4 @@
-import { PerspectiveCamera, Scene, Vector3, WebGLRenderer } from 'three';
+import { Color, PerspectiveCamera, Scene, Vector3, WebGLRenderer } from 'three';
 import { WORLD_SPHERICAL_MERCATOR_AXIS } from '@/05.udemy.interactive-globe/geo/Ellipsoid';
 import { View } from '@/05.udemy.interactive-globe/View';
 import { Earth } from '@/05.udemy.interactive-globe/Earth';
@@ -13,6 +13,7 @@ export class GlobeScene {
 
   constructor(private view: View) {
     this.world = new Scene();
+    this.world.background = new Color(0, 0, 0);
     this.renderer = new WebGLRenderer({
       canvas: this.view.getCanvas(),
       context: this.view.getContext(),
@@ -36,7 +37,8 @@ export class GlobeScene {
     });
 
     const earth = new Earth();
-
+    // @ts-ignore
+    window.earth = earth;
     this.world.add(earth.root);
 
     const ORIGIN = new Vector3(0, 0, 0);
@@ -46,6 +48,7 @@ export class GlobeScene {
   }
 
   private render(): void {
+    this.renderer.clear(true, true, true);
     this.renderer.render(this.world, this.camera);
   }
 

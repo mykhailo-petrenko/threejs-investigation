@@ -1,4 +1,4 @@
-import { Color, PerspectiveCamera, Scene, Vector3, WebGLRenderer } from 'three';
+import { Clock, Color, PerspectiveCamera, Scene, Vector3, WebGLRenderer } from 'three';
 import { WORLD_SPHERICAL_MERCATOR_AXIS } from '@/05.udemy.interactive-globe/geo/Ellipsoid';
 import { View } from '@/05.udemy.interactive-globe/View';
 import { Earth } from '@/05.udemy.interactive-globe/Earth';
@@ -10,6 +10,9 @@ export class GlobeScene {
   renderer: WebGLRenderer;
   camera: PerspectiveCamera;
   debugCamera: PerspectiveCamera;
+
+  private earth: Earth;
+  private time = new Clock();
 
   constructor(private view: View) {
     this.world = new Scene();
@@ -28,8 +31,6 @@ export class GlobeScene {
   }
 
   public init(): void {
-    setTimeout(() => this.renderLoop(), 0);
-
     this.updateCamera();
 
     this.view.addEventListener('resize', () => {
@@ -40,11 +41,15 @@ export class GlobeScene {
     // @ts-ignore
     window.earth = earth;
     this.world.add(earth.root);
+    this.earth = earth;
 
     const ORIGIN = new Vector3(0, 0, 0);
 
     this.camera.position.set(20, 0, 0);
     this.camera.lookAt(ORIGIN);
+
+    this.updateLoop();
+    setTimeout(() => this.renderLoop(), 0);
   }
 
   private render(): void {
@@ -52,11 +57,23 @@ export class GlobeScene {
     this.renderer.render(this.world, this.camera);
   }
 
+  private update(): void {
+    this.earth.update(this.time.getDelta());
+  }
+
   private renderLoop() {
     this.render();
 
     requestAnimationFrame(() => {
       this.renderLoop();
+    });
+  }
+
+  private updateLoop() {
+    this.update();
+
+    setTimeout(() => {
+      this.updateLoop();
     });
   }
 

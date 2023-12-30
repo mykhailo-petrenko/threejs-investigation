@@ -2,7 +2,7 @@ import {
   AdditiveBlending,
   BackSide,
   Group, IUniform,
-  Mesh,
+  Mesh, Object3D,
   ShaderMaterial,
   SphereGeometry,
   TextureLoader
@@ -17,16 +17,21 @@ export class Earth {
 
   readonly root = new Group();
   public uniforms: Record<string, IUniform>;
+  private planet: Object3D;
 
   constructor() {
     this.initUniforms();
     this.initSphere();
   }
 
+  public update(dt: number) {
+    this.planet.rotation.y += 0.1 * dt;
+  }
+
   private initUniforms() {
     this.uniforms = {
       sunDirection: {
-        value: [1, 0, 0]
+        value: [0, 0, 1]
       },
       atmosphereColor: {
         value: [.3, .6, 1.]
@@ -52,8 +57,9 @@ export class Earth {
       }
     });
     const globe = new Mesh(globeMesh, customMaterial);
-
     this.root.add(globe);
+
+    this.planet = globe;
 
     const atmosphereMaterial = new ShaderMaterial({
       fragmentShader: atmosphereFS,

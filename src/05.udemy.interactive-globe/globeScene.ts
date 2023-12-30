@@ -17,12 +17,13 @@ export class GlobeScene {
       canvas: this.view.getCanvas(),
       context: this.view.getContext(),
       precision: 'highp',
+      antialias: true,
       alpha: true,
       logarithmicDepthBuffer: true
     });
+    this.renderer.setPixelRatio(window.devicePixelRatio);
     this.camera = new PerspectiveCamera(50, 1, 0.1, GlobeScene.DEFAULT_FAR);
     this.debugCamera = new PerspectiveCamera();
-
   }
 
   public init(): void {

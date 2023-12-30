@@ -59,6 +59,11 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(glsl|txt)$/,
+        use: ["raw-loader"],
+        exclude: /node_modules/,
+      },
+      {
         test: /\.(ts|tsx)$/,
         use: [{ loader: "babel-loader", options: babelConfig }, "ts-loader"],
         exclude: /node_modules/,
@@ -76,7 +81,7 @@ module.exports = {
 
   resolve: {
     modules: [paths.src, 'node_modules'],
-    extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
+    extensions: ['.js', '.jsx', '.json', '.ts', '.tsx', '.glsl'],
     alias: {
       '@': paths.src,
       '~': paths.src,
